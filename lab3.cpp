@@ -55,11 +55,11 @@ int main() {
 
     // Виведення результатів на екран
     cout << "Q1: "; Q1.getCoordinates();
-    cout << "Площа Q1: " << Q1.area() << ", Периметр Q1: " << Q1.perimeter() << endl;
+    cout << "Area Q1: " << Q1.area() << ", Perimeter Q1: " << Q1.perimeter() << endl;
     cout << "Q2: "; Q2.getCoordinates();
-    cout << "Площа Q2: " << Q2.area() << ", Периметр Q2: " << Q2.perimeter() << endl;
+    cout << "Area Q2: " << Q2.area() << ", Perimeter Q2: " << Q2.perimeter() << endl;
     cout << "Q3: "; Q3.getCoordinates();
-    cout << "Площа Q3: " << Q3.area() << ", Периметр Q3: " << Q3.perimeter() << endl;
+    cout << "Area Q3: " << Q3.area() << ", Perimeter Q3: " << Q3.perimeter() << endl;
 
     return 0;
 }
