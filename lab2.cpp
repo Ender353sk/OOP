@@ -30,17 +30,17 @@ public:
 int main() {
     // Створення об'єкта класу Lines
     Lines lineObj("1234556789");
-    std::cout << "Рядок: " << lineObj.getValue() << std::endl;
+    std::cout << lineObj.getValue() << std::endl;
 
     // Обчислення та виведення довжини рядка
-    std::cout << "Довжина рядка: " << lineObj.length() << std::endl;
+    std::cout << lineObj.length() << std::endl;
 
     // Видалення символу '5'
     lineObj.removeFives();
-    std::cout << "Рядок після видалення '5': " << lineObj.getValue() << std::endl;
+    std::cout << lineObj.getValue() << std::endl;
 
     // Обчислення та виведення нової довжини рядка
-    std::cout << "Нова довжина рядка: " << lineObj.length() << std::endl;
+    std::cout << lineObj.length() << std::endl;
 
     return 0;
 }
