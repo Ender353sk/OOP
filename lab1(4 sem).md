@@ -154,7 +154,7 @@ Instead of overwriting content:
 * Delete for me:
   * Create a UserMessageVisibility record.
   * Message remains intact for others.
-* Delete for everyone: **
+* Delete for everyone:
   * Mark message as deleted_globally = true
   * Replace content with placeholder text.
   * Store deletion event in audit log.
@@ -162,117 +162,77 @@ Instead of overwriting content:
 ### 3. Asynchronous Update Delivery
 
 All edits and deletions:
+* Generate events
+* Are placed in a message queue
+* Delivered to online users immediately
+* Delivered to offline users upon reconnection
 
-Generate events
-
-Are placed in a message queue
-
-Delivered to online users immediately
-
-Delivered to offline users upon reconnection
-
-4. Audit Trail Design
+### 4. Audit Trail Design
 
 Audit log stores:
+* Message ID
+* Previous content
+* Editor user ID
+* Timestamp
+* Operation type (EDIT / DELETE_LOCAL / DELETE_GLOBAL)
+ Audit data is append-only.
 
-Message ID
-
-Previous content
-
-Editor user ID
-
-Timestamp
-
-Operation type (EDIT / DELETE_LOCAL / DELETE_GLOBAL)
-
-Audit data is append-only.
-
-Alternatives Considered
-1. Fully Mutable Messages (Rejected)
-
+## Alternatives Considered
+### 1. Fully Mutable Messages (Rejected)
 Overwriting message content destroys history and reduces auditability.
 
-2. Hard Delete from Database (Rejected)
-
+### 2. Hard Delete from Database (Rejected)
 Breaks conversation consistency and may violate compliance requirements.
 
-3. Client-Side Only Deletion (Rejected)
-
+### 3. Client-Side Only Deletion (Rejected)
 Not secure or reliable.
 
-Consequences
-Positive
+## Consequences
 
-Strong consistency
+### Positive
+* Strong consistency
+* Full auditability
+* Reliable offline support
+* Compliance-friendly design
 
-Full auditability
+### Negative
+* Increased storage usage
+* More complex logic
+* Additional infrastructure (queue + audit storage)
 
-Reliable offline support
+# Part 5 — ADR
+# ADR-001: Use Versioned Immutable Messages
 
-Compliance-friendly design
-
-Negative
-
-Increased storage usage
-
-More complex logic
-
-Additional infrastructure (queue + audit storage)
-
-📚 Part 5 — ADR
-ADR-001: Use Versioned Immutable Messages
-Status
-
+## Status
 Accepted
 
-Context
-
+## Context
 Message editing requires preserving history while maintaining consistency across distributed clients.
 
-Decision
-
+## Decision
 Messages will be implemented as:
+* Immutable records
+* Edits create new versions
+* Deletions are soft (state-based)
+* All changes recorded in an append-only audit log
 
-Immutable records
+## Consequences
 
-Edits create new versions
+### Advantages
+* Full traceability
+* Safe concurrent updates
+* Easy debugging
+* Supports regulatory compliance
 
-Deletions are soft (state-based)
+### Trade-offs
+* More database storage
+* Additional versioning logic
+* More complex queries
 
-All changes recorded in an append-only audit log
-
-Consequences
-Advantages
-
-Full traceability
-
-Safe concurrent updates
-
-Easy debugging
-
-Supports regulatory compliance
-
-Trade-offs
-
-More database storage
-
-Additional versioning logic
-
-More complex queries
-
-✅ Final Design Principles
-
-Event-driven architecture
-
-Asynchronous delivery
-
-Immutable data + versioning
-
-Soft deletion instead of hard deletion
-
-Append-only audit log
-
-Eventual consistency with guaranteed reliability
-
-
-
+# Final Design Principles
+* Event-driven architecture
+* Asynchronous delivery
+* Immutable data + versioning
+* Soft deletion instead of hard deletion
+* Append-only audit log
+* Eventual consistency with guaranteed reliability
