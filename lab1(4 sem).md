@@ -55,7 +55,7 @@
 * Notify clients about edits/deletions
   
 ## Component Diagram (Mermaid)
-'''mermaid
+```mermaid
 graph LR
   Client --> API
   API --> MessageService
@@ -64,7 +64,7 @@ graph LR
   MessageService --> Queue
   Queue --> DeliveryService
   DeliveryService --> Client
-'''
+```
 
 
 
