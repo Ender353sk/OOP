@@ -3,20 +3,14 @@
 ## 🧩 Functional Requirements
 
 1. A user can send a message to another user.
-
 2. A message has a lifecycle (created → sent → delivered → read).
-
 3. A user can edit a previously sent message.
-
 4. A user can delete a message:
+    *Delete for me (local deletion)
+*  Delete for everyone (global deletion)
 
-* Delete for me (local deletion)
-
-* Delete for everyone (global deletion)
-
-The system must:
-
-Store messages persistently
+5. The system must:
+*  Store messages persistently
 
 Deliver them asynchronously
 
