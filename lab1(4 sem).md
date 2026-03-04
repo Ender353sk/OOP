@@ -151,10 +151,10 @@ Instead of overwriting content:
 
 ### 2. Soft Deletion Strategy
 
-* ** Delete for me: **
+* Delete for me:
   * Create a UserMessageVisibility record.
   * Message remains intact for others.
-* ** Delete for everyone: **
+* Delete for everyone: **
   * Mark message as deleted_globally = true
   * Replace content with placeholder text.
   * Store deletion event in audit log.
