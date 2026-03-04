@@ -8,11 +8,11 @@
 
 3. A user can edit a previously sent message.
 
-A user can delete a message:
+4. A user can delete a message:
 
-Delete for me (local deletion)
+* Delete for me (local deletion)
 
-Delete for everyone (global deletion)
+* Delete for everyone (global deletion)
 
 The system must:
 
