@@ -1,4 +1,4 @@
-# Lab 1: Variant 5
+# Lab 1: Variant 6
 
 ## Functional Requirements
 
